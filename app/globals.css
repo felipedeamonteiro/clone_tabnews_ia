@@ -1,281 +1,100 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: Arial, Helvetica, sans-serif;
+  padding: 1.5rem;
+  background: #ffffff;
+  color: #1f2328;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif;
 }
 
-/* ---------- Botão ---------- */
-.surpresa summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 1.2rem 2.4rem;
+.em-construcao {
+  max-width: 720px;
+  text-align: center;
+}
+
+.selo {
+  display: inline-block;
+  padding: 0.4rem 1rem;
   border-radius: 999px;
-  background: #e01b24;
-  color: #fff;
-  font-size: 2rem;
-  font-weight: bold;
+  background: #fff8c5;
+  border: 1px solid #d4a72c;
+  color: #7d4e00;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-transform: uppercase;
-  box-shadow: 0 6px 0 #8f0f15, 0 10px 25px #e01b2466;
-  animation: pulsar 1.2s ease-in-out infinite;
-  user-select: none;
-}
-.surpresa summary::-webkit-details-marker { display: none; }
-.surpresa summary:hover { background: #ff2a33; }
-.surpresa summary:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px 0 #8f0f15;
-}
-.surpresa summary:focus-visible { outline: 4px solid #333; outline-offset: 4px; }
-
-/* depois de apertar, o botão some e só os gatos ficam */
-.surpresa[open] summary { display: none; }
-/* garante que a animação comece do zero ao abrir */
-.surpresa:not([open]) .cena { display: none; }
-
-@keyframes pulsar {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
+  letter-spacing: 0.05em;
 }
 
-/* ---------- Cena da animação ---------- */
-.cena {
-  position: relative;
-  width: 360px;
-  height: 170px;
+.em-construcao h1 {
+  margin: 1.5rem 0;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  line-height: 1.35;
 }
 
-/* chão */
-.cena::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 18px;
-  height: 2px;
-  background: #999;
+.total {
+  margin: 0 0 2rem;
+  font-size: 1.1rem;
+  color: #59636e;
 }
 
-/* ---------- Gato genérico (virado para a direita) ---------- */
-.gato {
-  position: absolute;
-  bottom: 20px;
-  width: 120px;
-  height: 90px;
+.total strong {
+  color: #1f2328;
+  font-size: 1.4rem;
 }
 
-.gato div {
-  position: absolute;
-  background: var(--pelo);
+.link-oficial {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border-radius: 6px;
+  background: #1f2328;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
 }
 
-.corpo {
-  left: 10px;
-  top: 35px;
-  width: 80px;
-  height: 40px;
-  border-radius: 50%;
+.link-oficial:hover {
+  background: #393f46;
 }
 
-.cabeca {
-  left: 72px;
-  top: 15px;
-  width: 40px;
-  height: 36px;
-  border-radius: 50%;
+.link-oficial:focus-visible {
+  outline: 3px solid #0969da;
+  outline-offset: 3px;
 }
 
-.gato .orelha {
-  top: 4px;
-  width: 0;
-  height: 0;
-  background: none;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 16px solid var(--pelo);
-}
-.orelha.e1 { left: 74px; transform: rotate(-15deg); }
-.orelha.e2 { left: 94px; transform: rotate(15deg); }
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0d1117;
+    color: #e6edf3;
+  }
 
-.gato .olho {
-  top: 27px;
-  width: 6px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--olho);
-}
-.olho.o1 { left: 88px; }
-.olho.o2 { left: 101px; }
+  .selo {
+    background: #2e2a12;
+    border-color: #9e6a03;
+    color: #e3b341;
+  }
 
-.gato .nariz {
-  left: 106px;
-  top: 37px;
-  width: 5px;
-  height: 4px;
-  border-radius: 50%;
-  background: #e88;
-}
+  .total {
+    color: #9198a1;
+  }
 
-.rabo {
-  left: -14px;
-  top: 30px;
-  width: 34px;
-  height: 7px;
-  border-radius: 4px;
-  transform-origin: right center;
-  animation: rabo 0.8s ease-in-out infinite alternate;
-}
+  .total strong {
+    color: #e6edf3;
+  }
 
-.perna {
-  top: 64px;
-  width: 9px;
-  height: 24px;
-  border-radius: 4px;
-  transform-origin: top center;
-}
-.perna.p1 { left: 20px; }
-.perna.p2 { left: 34px; }
-.perna.p3 { left: 64px; }
-.perna.p4 { left: 78px; }
+  .link-oficial {
+    background: #e6edf3;
+    color: #0d1117;
+  }
 
-/* ---------- Fumaça (preto, virado para a esquerda) ---------- */
-.gato.preto {
-  --pelo: #111;
-  --olho: #e6d200;
-  left: 30px;
-  transform: scaleX(-1);
-}
-
-/* levanta a perna traseira */
-.preto .perna.p1 {
-  animation: perna 6s ease-in-out infinite;
-}
-
-/* ---------- Ivy (branca, de costas) ---------- */
-.gato.branco {
-  --pelo: #fff;
-  --olho: #333;
-  left: 220px;
-  filter: drop-shadow(0 0 1px #555);
-  animation: susto 6s ease-in-out infinite;
-}
-
-/* laço roxo */
-.gato .laco {
-  left: 88px;
-  top: 7px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #7b1fa2;
-  transform: rotate(-20deg);
-}
-.laco::before,
-.laco::after {
-  content: "";
-  position: absolute;
-  top: -3px;
-  border-top: 6.5px solid transparent;
-  border-bottom: 6.5px solid transparent;
-}
-.laco::before { left: -9px; border-left: 10px solid #9c27b0; }
-.laco::after { left: 6px; border-right: 10px solid #9c27b0; }
-
-/* ---------- Xixi ---------- */
-.jato {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  animation: jato 6s linear infinite;
-}
-
-.gota {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #f2c200;
-  offset-path: path("M 138 105 Q 195 30 252 88");
-  animation: gota 0.5s linear infinite;
-}
-.gota:nth-child(2) { animation-delay: -0.1s; }
-.gota:nth-child(3) { animation-delay: -0.2s; }
-.gota:nth-child(4) { animation-delay: -0.3s; }
-.gota:nth-child(5) { animation-delay: -0.4s; }
-
-.poca {
-  position: absolute;
-  left: 225px;
-  bottom: 14px;
-  width: 110px;
-  height: 12px;
-  border-radius: 50%;
-  background: #f2c20099;
-  transform: scale(0);
-  animation: poca 6s ease-out infinite;
-}
-
-.grito {
-  position: absolute;
-  left: 255px;
-  top: 0;
-  font-weight: bold;
-  font-size: 1.2rem;
-  opacity: 0;
-  animation: grito 6s ease-in-out infinite;
-}
-
-/* ---------- Keyframes ---------- */
-@keyframes rabo {
-  from { transform: rotate(-45deg); }
-  to { transform: rotate(-15deg); }
-}
-
-@keyframes perna {
-  0%, 10% { transform: rotate(0); }
-  18%, 70% { transform: rotate(55deg); }
-  78%, 100% { transform: rotate(0); }
-}
-
-@keyframes jato {
-  0%, 20% { opacity: 0; }
-  21%, 68% { opacity: 1; }
-  69%, 100% { opacity: 0; }
-}
-
-@keyframes gota {
-  from { offset-distance: 0%; }
-  to { offset-distance: 100%; }
-}
-
-@keyframes poca {
-  0%, 25% { transform: scale(0); opacity: 1; }
-  70% { transform: scale(1); opacity: 1; }
-  90% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1); opacity: 0; }
-}
-
-@keyframes susto {
-  0%, 70% { transform: translateY(0) rotate(0); }
-  74% { transform: translateY(-35px) rotate(-8deg); }
-  78% { transform: translateY(0) rotate(0); }
-  81% { transform: rotate(-4deg); }
-  84% { transform: rotate(4deg); }
-  87% { transform: rotate(-4deg); }
-  90%, 100% { transform: rotate(0); }
-}
-
-@keyframes grito {
-  0%, 71% { opacity: 0; }
-  73%, 92% { opacity: 1; }
-  95%, 100% { opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cena * { animation: none !important; }
+  .link-oficial:hover {
+    background: #c9d1d9;
+  }
 }
